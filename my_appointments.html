@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments - Karma Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://i.pinimg.com/564x/60/fa/92/60fa92145240edb7d178d9cee1b07c13.jpg" alt="Hospital Logo">
+                <span>KARMA HOSPITAL</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" id="nav-doctors"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="my_appointments.html" id="nav-appointments" class="active"><i class="fas fa-calendar-check"></i> My Appointments</a></li>
+                <li id="admin-nav" style="display: none;"><a href="admin.html"><i class="fas fa-cog"></i> Admin</a></li>
+                <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="my-appointments">
+        <div class="appointments-header">
+            <h1>My Appointments</h1>
+            <button class="btn-primary" id="clear-appointments" style="display: none;">
+                <i class="fas fa-trash-alt"></i> Clear All
+            </button>
+        </div>
+        
+        <div class="appointments-table-container">
+            <table id="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Patient Name</th>
+                        <th>Doctor Name</th>
+                        <th>Pre-disease</th>
+                        <th>OPD Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="no-appointments" class="no-data-message" style="display: none;">
+            <i class="fas fa-calendar-times" style="font-size: 4rem; color: var(--light-gray); margin-bottom: 20px;"></i>
+            <h2 style="color: var(--gray); margin-bottom: 15px;">No Appointments Yet</h2>
+            <p style="color: var(--gray); margin-bottom: 30px;">You haven't booked any appointments yet.</p>
+            <a href="index.html" class="btn-primary">
+                <i class="fas fa-calendar-plus"></i> Book Your First Appointment
+            </a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="appointments-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karma Hospital - Find the Best Doctors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://i.pinimg.com/564x/60/fa/92/60fa92145240edb7d178d9cee1b07c13.jpg" alt="Hospital Logo">
+                <span>KARMA HOSPITAL</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" id="nav-doctors" class="active"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="my_appointments.html" id="nav-appointments"><i class="fas fa-calendar-check"></i> My Appointments</a></li>
+                <li id="admin-nav" style="display: none;"><a href="admin.html"><i class="fas fa-cog"></i> Admin</a></li>
+                <li id="auth-nav">
+                    <a href="#" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="logo-container">
+            <div class="logo-circle">
+                <img src="https://i.pinimg.com/564x/60/fa/92/60fa92145240edb7d178d9cee1b07c13.jpg" alt="Hospital Logo" class="logo">
+            </div>
+            <h1 class="hospital-name">KARMA HOSPITAL</h1>
+            <p class="hospital-tagline">Your Health, Our Priority</p>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <p class="loading-text">Loading our medical specialists...</p>
+        </div>
+    </div>
+
+    <!-- Authentication Screen -->
+    <div id="auth-screen" style="display: none;">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form active">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" class="switch-tab" data-tab="signup">Sign up here</a></p>
+                </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form">
+                <h2>Create Account</h2>
+                <p>Join Karma Hospital today</p>
+                
+                <form id="signupForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signup-fname">First Name</label>
+                            <input type="text" id="signup-fname" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-lname">Last Name</label>
+                            <input type="text" id="signup-lname" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" name="password" required minlength="6">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-phone">Phone Number</label>
+                        <input type="tel" id="signup-phone" name="phone" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" class="switch-tab" data-tab="login">Sign in here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" style="display: none;">
+        <div class="welcome-content">
+            <h1>WELCOME TO <span class="highlight">KARMA HOSPITAL</span></h1>
+            <p>Where compassionate care meets medical excellence</p>
+            <div class="welcome-features">
+                <div class="feature">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Expert Doctors</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <span>24/7 Service</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Advanced Care</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctor Listing -->
+    <div id="doctor-listing" style="display: none;">
+        <div class="container">
+            <div class="doctor-listing-header">
+                <div class="header-text">
+                    <h1>Our Medical Specialists</h1>
+                    <p>Book an appointment with our experienced healthcare professionals</p>
+                </div>
+                <button id="book-appointment-btn" class="btn-primary">
+                    <i class="fas fa-calendar-plus"></i> Book Appointment
+                </button>
+            </div>
+
+            <div class="doctors-container">
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dr. John Smith">
+                    </div>
+                    <div class="doctor-info">
+                        <h2 class="doctor-name">Dr. John Smith</h2>
+                        <span class="doctor-specialization">Cardiologist</span>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5</span>
+                        </div>
+                        <p class="doctor-experience">15+ years of experience</p>
+                        <div class="availability">
+                            <h3 class="availability-title">Availability:</h3>
+                            <ul class="availability-list">
+                                <li><i class="far fa-clock"></i> Mon-Fri: 9:00 AM - 12:00 PM</li>
+                                <li><i class="far fa-clock"></i> Mon-Fri: 1:00 PM - 5:00 PM</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dr. Jane Doe">
+                    </div>
+                    <div class="doctor-info">
+                        <h2 class="doctor-name">Dr. Jane Doe</h2>
+                        <span class="doctor-specialization">Neurologist</span>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.0</span>
+                        </div>
+                        <p class="doctor-experience">12+ years of experience</p>
+                        <div class="availability">
+                            <h3 class="availability-title">Availability:</h3>
+                            <ul class="availability-list">
+                                <li><i class="far fa-clock"></i> Tue-Thu: 10:00 AM - 1:00 PM</li>
+                                <li><i class="far fa-clock"></i> Tue-Thu: 2:00 PM - 6:00 PM</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dr. Emily Davis">
+                    </div>
+                    <div class="doctor-info">
+                        <h2 class="doctor-name">Dr. Emily Davis</h2>
+                        <span class="doctor-specialization">Pediatrician</span>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </div>
+                        <p class="doctor-experience">10+ years of experience</p>
+                        <div class="availability">
+                            <h3 class="availability-title">Availability:</h3>
+                            <ul class="availability-list">
+                                <li><i class="far fa-clock"></i> Mon-Fri: 8:00 AM - 11:00 AM</li>
+                                <li><i class="far fa-clock"></i> Mon-Fri: 12:00 PM - 4:00 PM</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Booking Appointment -->
+    <div id="appointment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-calendar-plus"></i> Book Appointment</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="appointment-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="patient-name">Patient Name</label>
+                        <input type="text" id="patient-name" name="patient-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="doctor-name">Doctor Name</label>
+                        <select id="doctor-name" name="doctor-name" required>
+                            <option value="">Select a Doctor</option>
+                            <option value="Dr. John Smith">Dr. John Smith</option>
+                            <option value="Dr. Jane Doe">Dr. Jane Doe</option>
+                            <option value="Dr. Emily Davis">Dr. Emily Davis</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pre-disease">Pre-disease</label>
+                        <input type="text" id="pre-disease" name="pre-disease" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="still-suffering">Still Suffering</label>
+                        <select id="still-suffering" name="still-suffering" required>
+                            <option value="">Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="opd-date">OPD Date</label>
+                        <input type="date" id="opd-date" name="opd-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="file-upload">Upload File</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="file-upload" name="file-upload" accept=".jpg,.jpeg,.png,.pdf" required>
+                            <label for="file-upload" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i> Choose File
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="blood-group">Blood Group</label>
+                        <select id="blood-group" name="blood-group" required>
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Book Appointment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

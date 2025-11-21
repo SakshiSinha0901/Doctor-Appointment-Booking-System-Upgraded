@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Karma Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://i.pinimg.com/564x/60/fa/92/60fa92145240edb7d178d9cee1b07c13.jpg" alt="Hospital Logo">
+                <span>KARMA HOSPITAL</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" id="nav-doctors"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="my_appointments.html" id="nav-appointments"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+                <li><a href="admin.html" class="active"><i class="fas fa-cog"></i> Admin</a></li>
+                <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="admin-panel" style="padding: 90px 20px 50px;">
+        <div class="container">
+            <div class="admin-header">
+                <h1>Admin Panel</h1>
+                <span class="admin-badge">Administrator</span>
+            </div>
+
+            <div class="admin-section">
+                <h2>All Appointments</h2>
+                <div class="appointments-table-container">
+                    <table id="admin-appointments-table">
+                        <thead>
+                            <tr>
+                                <th>Appointment ID</th>
+                                <th>Patient Name</th>
+                                <th>Doctor</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Appointments will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="admin-script.js"></script>
+</body>
+</html>
